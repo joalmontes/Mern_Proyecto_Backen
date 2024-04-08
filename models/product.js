@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Schema = mongoose.schema
+const Schema = mongoose.Schema
 
 const productSchema = Schema({
     name: String,
@@ -8,7 +8,7 @@ const productSchema = Schema({
     unitaryPrice: Number,
     img: String,
     descripcion: String
-},{
+}, {
     timestamps: true
 })
 
