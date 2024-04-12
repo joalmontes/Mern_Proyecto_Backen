@@ -19,4 +19,3 @@ productSchema.methods.setImgUrl = function setImgUrl (filename){
 }
 
 module.exports = mongoose.model('products', productSchema)
-
