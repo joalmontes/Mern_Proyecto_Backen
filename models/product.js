@@ -4,10 +4,11 @@ const { appConfig } = require('../config')
 const Schema = mongoose.Schema
 
 const productSchema = Schema({
-    name: String,
-    size: Number,
-    unitaryPrice: Number,
-    description: String
+    nombre_funcionario: String,
+    aparato: String,
+    numero: Number,
+    lugar_donde: String,
+    fecha_entrega: Date,
 }, {
     timestamps: true
 })

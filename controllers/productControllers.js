@@ -3,17 +3,19 @@ const Product = require('../models/Product')
 async function addProduct(req, res) {
     try {
         const {
-            name,
-            size,
-            unitaryPrice,
-            description
+            nombre_funcionario,
+            aparato,
+            numero,
+            lugar_donde,
+            fecha_entrega
         } = req.body
 
         const product = Product({
-            name,
-            size,
-            unitaryPrice,
-            description
+            nombre_funcionario,
+            aparato,
+            numero,
+            lugar_donde,
+            fecha_entrega
         })
 
         const productStored = await product.save()
