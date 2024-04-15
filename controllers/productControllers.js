@@ -1,4 +1,5 @@
 const Product = require('../models/Product')
+const Funcionario = require('../models/Funcionarios')
 
 async function addProduct(req, res) {
     try {
@@ -26,6 +27,34 @@ async function addProduct(req, res) {
     }
 }
 
+async function addFuncionario (req, res){
+    try{ 
+        const{
+            nombre_Apellido,
+            cargo
+        } = req.body
+        
+        const funcionario = Funcionario({
+            nombre_Apellido,
+            cargo
+    
+        })
+
+        const FuncionarioStored = await funcionario.save()
+        res.status(201).send({ FuncionarioStored })
+
+    } catch (e){
+        res.status(500).send({ message: e.message })
+    }
+}
+
+
+
+async function getFuncionario(req, res){
+    const funcionarios = await Funcionario.find().lean().exec()
+    res.status(200).send({ funcionarios })
+}
+
 async function getProducts(req, res) {
     const products = await Product.find().lean().exec()
     res.status(200).send({ products })
@@ -33,5 +62,8 @@ async function getProducts(req, res) {
 
 module.exports = {
     addProduct,
-    getProducts
+    getProducts,
+
+    addFuncionario,
+    getFuncionario,
 }
