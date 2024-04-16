@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 
 const funcionarioSchema = Schema({
     nombre_Apellido: String,
-    cargo: String
+    cargo: String,
+    correo: String
 },{
     timestamps: true
 })

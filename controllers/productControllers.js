@@ -33,12 +33,14 @@ async function addFuncionario (req, res){
     try{ 
         const{
             nombre_Apellido,
-            cargo
+            cargo,
+            correo
         } = req.body
         
         const funcionario = Funcionario({
             nombre_Apellido,
-            cargo
+            cargo,
+            correo
     
         })
 
