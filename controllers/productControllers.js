@@ -1,6 +1,7 @@
 const Product = require('../models/Product')
 const Funcionario = require('../models/Funcionarios')
 const Historial = require ('../models/historial')
+const Aparato = require('../models/aparatos')
 
 async function addProduct(req, res) {
     try {
@@ -72,6 +73,26 @@ async function addHistorial (req, res){
     }
 }
 
+async function addAparato (req, res){
+    try{ 
+        const{
+            dispositivo,
+            modelo,
+        } = req.body
+        
+        const aparato = Aparato({
+            dispositivo,
+            modelo,
+    
+        })
+
+        const AparatoStored = await aparato.save()
+        res.status(201).send({ AparatoStored })
+
+    } catch (e){
+        res.status(500).send({ message: e.message })
+    }
+}
 
 
 async function getFuncionario(req, res){
@@ -86,6 +107,11 @@ async function getProducts(req, res) {
 async function getHistorial(req, res) {
     const historial = await Historial.find().lean().exec()
     res.status(200).send({ historial })
+}
+
+async function getAparato(req, res) {
+    const aparato = await Aparato.find().lean().exec()
+    res.status(200).send({ aparato })
 }
 
 
@@ -118,4 +144,7 @@ module.exports = {
 
     addHistorial,
     getHistorial,
+
+    addAparato,
+    getAparato,
 }
