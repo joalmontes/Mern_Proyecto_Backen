@@ -6,8 +6,9 @@ const Schema = mongoose.Schema
 const funcionarioSchema = Schema({
     nombre_Apellido: String,
     cargo: String
+},{
+    timestamps: true
 })
-
 
 
 module.exports = mongoose.model('funcionarios', funcionarioSchema)

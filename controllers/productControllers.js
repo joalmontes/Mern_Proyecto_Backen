@@ -1,5 +1,6 @@
 const Product = require('../models/Product')
 const Funcionario = require('../models/Funcionarios')
+const Historial = require ('../models/historial')
 
 async function addProduct(req, res) {
     try {
@@ -48,6 +49,29 @@ async function addFuncionario (req, res){
     }
 }
 
+async function addHistorial (req, res){
+    try{ 
+        const{
+            aparato,
+            mes,
+            anno
+        } = req.body
+        
+        const historial = Historial({
+            aparato,
+            mes,
+            anno
+    
+        })
+
+        const HistorialStored = await historial.save()
+        res.status(201).send({ HistorialStored })
+
+    } catch (e){
+        res.status(500).send({ message: e.message })
+    }
+}
+
 
 
 async function getFuncionario(req, res){
@@ -59,11 +83,39 @@ async function getProducts(req, res) {
     const products = await Product.find().lean().exec()
     res.status(200).send({ products })
 }
+async function getHistorial(req, res) {
+    const historial = await Historial.find().lean().exec()
+    res.status(200).send({ historial })
+}
+
+
+
+async function deleteProduct(req, res) {
+    const productId = req.params.id;
+
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(productId);
+
+        if (!deletedProduct) {
+            return res.status(404).send({ message: 'Producto no encontrado' });
+        }
+
+        res.status(200).send({ message: 'Producto eliminado correctamente', deletedProduct });
+    } catch (error) {
+        res.status(500).send({ message: 'Error al eliminar el producto', error });
+    }
+}
+
+
 
 module.exports = {
     addProduct,
     getProducts,
+    deleteProduct,
 
     addFuncionario,
     getFuncionario,
+
+    addHistorial,
+    getHistorial,
 }
