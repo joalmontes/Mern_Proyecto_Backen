@@ -14,12 +14,12 @@ api.post('/funcionario', addFuncionario)
 api.post('/historial', addHistorial)
 api.post('/aparato', addAparato)
 api.post("/api/sendemail", async (req, res)=>{
-    const {email}= req.body
+    const {correo}= req.body
 
     try {
-        const send_to = email
+        const send_to = correo
         const sent_from = process.env.EMAIL_USER
-        const reply_to = email
+        const reply_to = correo
         const subject = "!!IMPORTANTE¡¡"
         const message = `
         <p>Estimado destinatario esperando que se encuete bien.

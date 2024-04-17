@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 
 const productSchema = Schema({
     nombre_funcionario: String,
+    correo: String,
     aparato: String,
     numero: Number,
     lugar_donde: String,

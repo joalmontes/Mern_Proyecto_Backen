@@ -7,6 +7,7 @@ async function addProduct(req, res) {
     try {
         const {
             nombre_funcionario,
+            correo,
             aparato,
             numero,
             lugar_donde,
@@ -15,6 +16,7 @@ async function addProduct(req, res) {
 
         const product = Product({
             nombre_funcionario,
+            correo,
             aparato,
             numero,
             lugar_donde,
