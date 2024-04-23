@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "9092:9092"
+    env:
+      - DB_HOST = mongo
+  mongo:
+    image: 
